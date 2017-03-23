@@ -1,0 +1,111 @@
+<!--本文件演示了获取鼠标位置并插入元素,实现tips提示功能 http://398868310.iteye.com/blog/2147245-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        <!-- 其中的参数e指的是事件-->
+        function mouseMove(event)
+        {
+            var ev= event || window.event;
+            var mousePos = mouseCoords(ev);
+            //获取当前的x,y坐标
+            document.getElementById("xxx").value = mousePos.x;
+            document.getElementById("yyy").value = mousePos.y;
+        }
+        function mouseCoords(ev)
+        {
+            //鼠标移动的位置
+            if(ev.pageX || ev.pageY){
+                return {
+                    x:ev.pageX,
+                    y:ev.pageY
+                };
+            }
+            return{
+                x:ev.clientX + document.body.scrollLeft - document.body.clientLeft,
+                y:ev.clientY + document.body.scrollTop - document.body.clientTop
+            };
+        }
+
+        //这个是考虑页面滚动获因素
+        function getMousePos(event) {
+            var e = event || window.event;
+            var scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
+            var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
+            var x = e.pageX || e.clientX + scrollX;
+            var y = e.pageY || e.clientY + scrollY;
+            //alert('x: ' + x + '\ny: ' + y);
+            console.log(x);
+            console.log(y);
+
+            var  targetNode=document.getElementById("oo");
+            var cFont = document.createElement('div');
+            var xP="500px";
+            var yP="900px";
+            //以下方法是错误的
+            cFont.setAttribute("color","red");
+            cFont.setAttribute("size","12");
+            cFont.setAttribute("z-index",1000000);
+            cFont.setAttribute("position","absolute");
+            cFont.setAttribute("left",xP);
+            cFont.setAttribute("top",yP);
+            cFont.innerHTML="红色";
+           // document.div.appendChild(cFont);
+            //targetNode.insertBefore(targetNode);
+            var oldBtn = document.getElementById('btn');
+            var parentNode = oldBtn.parentNode;
+            //parentNode.insertBefore(newBtn,oldBtn);//在原有btn的前面插入新创建的btn；
+            parentNode.insertBefore(cFont,oldBtn.nextSiblings)//将在原有btn的后面插入新创建的btn，
+            return { 'x': x, 'y': y };
+        }
+        //document.onmousemove = mouseMove;
+        //根据获取的位置,创建label元素,然后在位置处插入这个元素
+
+        //document.onmousemove = getMousePos;
+        function creatEle(obj){
+
+            console.log(obj);
+
+            var e = event || window.event;
+            console.log(event);
+            var scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
+            var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
+            var x = e.pageX || e.clientX + scrollX;
+            var y = e.pageY || e.clientY + scrollY;
+
+            var xP=x+"px";
+            var yP=y+"px";
+            console.log(xP);
+            console.log(y);
+            var newBtn = document.createElement('button');
+            newBtn.value="value";
+            newBtn.style.width = "50px";
+            newBtn.style.height = "50px";
+            newBtn.style.position="absolute";
+            newBtn.style.backgroundColor="red";
+            newBtn.style.left=xP;
+            newBtn.style.top=yP;
+            //追加新创建的btn
+            var oldBtn = document.getElementById('btn');
+            var parentNode = oldBtn.parentNode;
+            //parentNode.insertBefore(newBtn,oldBtn);//在原有btn的前面插入新创建的btn；
+            parentNode.insertBefore(newBtn,oldBtn.nextSiblings)//将在原有btn的后面插入新创建的btn，！！！原因是没有insetAfter！！所以用nextSiblings
+        }
+        //document.onclick = creatEle;
+
+    </script>
+</head>
+<body>
+     <div>
+         <p  onclick="getMousePos()">鼠标X轴:</p>
+         <input id=xxx type=text>
+         鼠标Y轴:
+         <input id=yyy type=text>
+         <a href=# title="这里是显示的文字">hello</a>
+         <div id="oo"></div>
+         <button onclick="creatEle(this)" id="btn">点击创建新btn</button>
+     </div>
+ </body>
+ </html>

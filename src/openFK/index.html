@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>开放平台</title>
+    <link  href="index.css" rel="stylesheet" type="text/css" />
+
+    <script>
+
+        class Handle {
+            constructor(props){
+
+            }
+            static getInnerHTML()
+            {
+                console.log(document.getElementById("tr1").innerHTML);
+            }
+            getInnerText(){
+                console.log(document.getElementById("tr2").innerText);
+            }
+
+        }
+        let  handle=new Handle();
+
+        window.onload=function(){
+//            var docwidth= document.documentElement.clientWidth;
+//            document.getElementById("top").style.width=docwidth+'px';
+//            document.getElementById("divTopStyle").style.width=docwidth+'px';
+//            document.getElementById("bottom").style.width=docwidth+'px';
+//            document.getElementById("bottomUp").style.width=docwidth+'px';
+//            document.getElementById("bottomDown").style.width=docwidth+'px';
+
+        }
+    </script>
+</head>
+<body>
+    <div id="top">
+        <div>首页</div>
+        <div>API</div>
+        <div>文档</div>
+        <div>商户中心</div>
+    </div>
+    <div id="divTopStyle">
+        <div>API>API列表</div>
+    </div>
+
+    <div id="contain">
+
+            <div id="divLeft">
+                <div id="alltitle">
+                    所有类目
+                </div>
+                <ul id="listStyle">
+                    <li class="ulli">
+                       <a href="#"> 类目API</a>
+                    </li>
+                    <li class="ulli">
+                        类目API
+                    </li>
+                </ul>
+            </div>
+
+            <div id="divRight">
+                <h1>用户API</h1>
+                <div>提供了评价的添加和查询功能。拥有如下API调用权限的应用，严禁涉及好评有礼/返现/免单等诱导消费者违背客观真实原则进行评价的场景，一经发现，收回权限</div>
+                <table style="border-collapse: collapse;background-color: white"  id="tb1">
+                    <thead>
+                        <tr style="border: 1px solid black;background-color: red">
+                            <td  class="lefttd">API列表</td>
+                            <td class="middletd">类型</td>
+                            <td class="righttd">描述</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border: 1px solid black">
+                            <td class="lefttd">
+                                <div>taobao.user.seller.get</div>
+                            </td>
+                            <td class="middletd">免费</td>
+                            <td class="righttd">将用户名转换成混淆后的值</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+    </div>
+
+
+    <div id="bottom">
+        <div id="bottomUp">
+            <div>合作伙伴:蛛网风控</div>
+            <div>联系我们:400-8604-001</div>
+            <div>QQ交流群:992500110</div>
+        </div>
+        <div  id="bottomDown">
+            <p style={{fontSize:14}}>
+                Copyright © 2015-2016 北京蜜蜂汇金科技有限公司 京ICP备14022439号-1 京ICP证151113号 京公网安备11010802015816号
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>图片轮播切换效果</title>
+<link  href="index.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="./jquery-1.2.6.pack.js"></script>
+<script type="text/javascript">
+	var t = n = 0, count;
+	$(document).ready(function(){	
+		count=$("#banner_list a").length;
+		$("#banner_list a:not(:first-child)").hide();
+		$("#banner_info").html($("#banner_list a:first-child").find("img").attr('alt'));
+		$("#banner_info").click(function(){window.open($("#banner_list a:first-child").attr('href'), "_blank")});
+		$("#banner li").click(function() {
+			var i = $(this).text() - 1;//获取Li元素内的值，即1，2，3，4
+			n = i;
+			if (i >= count) return;
+			$("#banner_info").html($("#banner_list a").eq(i).find("img").attr('alt'));
+			$("#banner_info").unbind().click(function(){window.open($("#banner_list a").eq(i).attr('href'), "_blank")})
+			$("#banner_list a").filter(":visible").fadeOut(500).parent().children().eq(i).fadeIn(1000);
+			document.getElementById("banner").style.background="";
+			$(this).toggleClass("on");
+			$(this).siblings().removeAttr("class");
+		});
+		t = setInterval("showAuto()", 4000);
+		$("#banner").hover(function(){clearInterval(t)}, function(){t = setInterval("showAuto()", 4000);});
+	})
+	
+	function showAuto()
+	{
+		n = n >=(count - 1) ? 0 : ++n;
+		$("#banner li").eq(n).trigger('click');
+	}
+</script>
+
+</head>
+
+<body>
+	<div id="top">
+		<div>首页</div>
+		<div>API</div>
+		<div>文档</div>
+		<div>商户中心</div>
+	</div>
+
+	<div id="banner">
+		<div id="banner_bg"></div>  <!--标题背景-->
+		<div id="banner_info"></div> <!--标题-->
+		<ul>
+			<li class="on">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<div id="swiperWrapper">
+			<div id="banner_list">
+				<a href="#" target="_blank"><img src="./imgs/p1.jpg" title="强大的技术支持" alt="1" /></a>
+				<a href="#" target="_blank"><img src="./imgs/p5.jpg" title="高并发业务验证" alt="2" /></a>
+				<a href="#" target="_blank"><img src="./imgs/p3.jpg" title="可靠" alt="3" /></a>
+				<a href="#" target="_blank"><img src="./imgs/p4.jpg" title="精准" alt="4" /></a>
+			</div>
+		</div>
+	</div>
+	<div style="display:flex;flex-direction: row;justify-content: space-around",>
+		<div>
+			<img src="./imgs/aq.jpg">
+			<div>超大集群,按需计算,系统扩容,瞬间完成</div>
+		</div>
+		<div>
+			<img src="./imgs/aq.jpg">
+			<div>提供发布系统，日志系统，告警监控，</div>
+			<div>系统压测，支持运维全面可视化,工具化</div>
+		</div>
+		<div>
+			<img src="./imgs/aq.jpg">
+			<div>支持复杂系统架构搭建,支持后台服务和存储服务</div>
+			<div>不再局限于传统PAAS的Web服务</div>
+		</div>
+		<div>
+			<img src="./imgs/aq.jpg">
+			<div>防DDos等网络攻击，系统可用性99.95%</div>
+		</div>
+
+	</div>
+
+	<div id="bottom">
+		<div id="bottomUp">
+			<div>合作伙伴:蛛网风控</div>
+			<div>联系我们:400-8604-001</div>
+			<div>QQ交流群:992500110</div>
+		</div>
+		<div  id="bottomDown">
+			<p style={{fontSize:14}}>
+				Copyright ? 2015-2016 北京蜜蜂汇金科技有限公司 京ICP备14022439号-1 京ICP证151113号 京公网安备11010802015816号
+			</p>
+		</div>
+	</div>
+</body>
+</html>

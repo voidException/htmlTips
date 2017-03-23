@@ -4,36 +4,32 @@
     <TITLE> New Document </TITLE>
     <meta charset="utf-8">
 </HEAD>
-
-<BODY>
-<TABLE width="100%" border="1" id = "tb">
-    <TR>
-        <TD><INPUT TYPE="text" NAME="a1" value="张三"></TD>
-        <TD><font color="red">男</font></TD>
-        <TD>21</TD>
-    </TR>
-    <TR>
-        <TD><INPUT TYPE="text" NAME="a2" value="李四"></TD>
-        <TD><font color="red">女</font></TD>
-        <TD>19</TD>
-    </TR>
-</TABLE>
-<SCRIPT LANGUAGE="JavaScript">
-    <!--
-    getValue();
-    function getValue()
-    {
-        alert("表格总行数="+tb.rows.length);
-        for( i = 0 ; i < tb.rows.length ; i ++){
-            Names = tb.rows[i].cells[0].getElementsByTagName("INPUT")[0].value;
-            gender = tb.rows[i].cells[1].innerHTML;
-            age   = tb.rows[i].cells[2].innerText;
-            alert(Names);
-            alert(gender);
-            alert(age);
-        }
+<script language="javascript">
+    function getTableContent(node) {
+        console.log(node);
+        var tr1 = node.parentNode.parentNode;
+        console.log(tr1.rowIndex);
+        console.log(tr1.cells[0].childNodes[0].value); //获取的方法一
     }
-    //-->
-</SCRIPT>
+
+</script>
+<BODY>
+<table id="tb1" width="200" border="1" cellpadding="4" cellspacing="0">
+    <tr>
+        <td height="25">第一行</td>
+    </tr>
+    <tr>
+        <td height="25">第二行</td>
+    </tr>
+    <tr>
+        <td height="25">第三行</td>
+    </tr>
+    <tr>
+        <td height="25">第四行</td>
+    </tr>
+    <tr>
+        <td height="25"><div value="获得表格内容" onclick="getTableContent(this)"> hhee</div></td>
+    </tr>
+</table>
 </BODY>
 </HTML>

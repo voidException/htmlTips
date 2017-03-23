@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="zp" />
+    <title>图片旋转</title>
+    <style type="text/css">
+        #img{
+            border: 1px solid #ffffff;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<img src="sanjiaoxing.png" id="img" />
+<button id="button">旋转</button>
+<script type="text/javascript">
+    let tag=0;
+    var deg = 0;
+    document.getElementById("button").onclick = function () {
+        if (tag===0){
+            tag=1;
+            deg += 90;
+            document.getElementById("img").style.transform = "rotate(" + deg + "deg)";
+        }else {
+            tag=0;
+            deg=deg-90;
+            document.getElementById("img").style.transform = "rotate(" + deg + "deg)";
+        }
+    }
+</script>
+</body>
+</html>
+
+if ( node.style.display==="none"){
+node.style.display="block";
+this.tag=1;
+this.deg += 90;
+document.getElementById("img").style.transform = "rotate(" + deg + "deg)";
+
+}else {
+node.style.display="none";
+this.tag=0;
+this.deg=deg-90;
+document.getElementById("img").style.transform = "rotate(" + deg + "deg)";
+
+}
